@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="ti_868_antenna.svg"
+   inkscape:version="1.1.2 (b8e25be8, 2022-02-05)"
+   inkscape:export-filename="/Users/keithgough/bitmap.png"
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="4.486242"
+     inkscape:cx="66.313854"
+     inkscape:cy="66.313854"
+     inkscape:window-width="1280"
+     inkscape:window-height="695"
+     inkscape:window-x="0"
+     inkscape:window-y="23"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#ffffff;stroke-width:0.264583"
+       id="rect220"
+       width="51.501369"
+       height="34.744942"
+       x="-8.3782129"
+       y="-3.6480565"
+       inkscape:export-filename="/Users/keithgough/Dropbox/designs/bee-badge-2000/schematic_and_pcb/rect220.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+    <rect
+       style="fill:#000000;fill-rule:evenodd;stroke:none;stroke-width:0;fill-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect31"
+       width="38"
+       height="2"
+       x="-1.7763568e-15"
+       y="0"
+       inkscape:export-filename="/Users/keithgough/Dropbox/designs/bee-badge-2000/schematic_and_pcb/rect31.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+    <rect
+       style="fill:#000000;fill-rule:evenodd;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect31-4"
+       width="38"
+       height="2"
+       x="0"
+       y="5"
+       inkscape:export-filename="/Users/keithgough/Dropbox/designs/bee-badge-2000/schematic_and_pcb/rect31.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+    <rect
+       style="fill:#000000;fill-rule:evenodd;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect31-4-2"
+       width="38"
+       height="2"
+       x="0"
+       y="10"
+       inkscape:export-filename="/Users/keithgough/Dropbox/designs/bee-badge-2000/schematic_and_pcb/rect31.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+    <rect
+       style="fill:#000000;fill-rule:evenodd;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect31-4-2-9"
+       width="18"
+       height="2"
+       x="19.999998"
+       y="15"
+       inkscape:export-filename="/Users/keithgough/Dropbox/designs/bee-badge-2000/schematic_and_pcb/rect31.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+    <rect
+       style="fill:#000000;fill-rule:evenodd;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect31-4-7"
+       width="7"
+       height="2"
+       x="-7"
+       y="36"
+       transform="rotate(-90)"
+       inkscape:export-filename="/Users/keithgough/Dropbox/designs/bee-badge-2000/schematic_and_pcb/rect31.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+    <rect
+       style="fill:#000000;fill-rule:evenodd;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect31-4-7-0"
+       width="7"
+       height="2"
+       x="-12"
+       y="0"
+       transform="rotate(-90)"
+       inkscape:export-filename="/Users/keithgough/Dropbox/designs/bee-badge-2000/schematic_and_pcb/rect31.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+    <rect
+       style="fill:#000000;fill-rule:evenodd;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect31-4-7-0-3"
+       width="7"
+       height="2"
+       x="-17"
+       y="36"
+       transform="rotate(-90)"
+       inkscape:export-filename="/Users/keithgough/Dropbox/designs/bee-badge-2000/schematic_and_pcb/rect31.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+    <rect
+       style="fill:#000000;fill-rule:evenodd;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect31-4-7-0-3-9"
+       width="10"
+       height="2"
+       x="-25"
+       y="17.999996"
+       transform="rotate(-90)"
+       inkscape:export-filename="/Users/keithgough/Dropbox/designs/bee-badge-2000/schematic_and_pcb/rect31.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+  </g>
+</svg>

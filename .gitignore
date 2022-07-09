@@ -1,0 +1,4 @@
+.DS_Store
+bee_finder_firmware/bee_finder/config.h
+bee_finder_firmware/luca_led/config.h
+bee_finder_firmware/rf_test_tx/config.h

@@ -1,0 +1,7 @@
+{
+    "sketch": "scroll_text_2.ino",
+    "board": "arduino:avr:pro",
+    "port": "/dev/tty.usbserial-FT9FV3Y3",
+    "output": "../ArduinoOutput",
+    "configuration": "cpu=8MHzatmega328"
+}

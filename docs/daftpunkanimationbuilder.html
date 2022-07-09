@@ -1,0 +1,675 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!-- saved from url=(0039)http://graffiti-me.appspot.com/seq.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Daft Punk Animation Builder</title>
+<style type="text/css">
+body{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	/*background-color:#000000;
+	color:#FFFFFF;*/
+} 
+input {
+
+}
+.dptr {
+height:60px;
+}
+
+.dptc_none {
+height:50px;
+width:50px;
+background-color:#999999;
+border-color:#000000;
+float: left;
+border-style: solid;
+border-width: 5px;
+}
+.dptc_top {
+height:50px;
+width:50px;
+background-color:#FF0000;
+border-color:#000000;
+float: left;
+border-style: solid;
+border-width: 5px;
+}
+.dptc_bottom {
+height:50px;
+width:50px;
+background-color:#0000FF;
+border-color:#000000;
+float: left;
+border-style: solid;
+border-width: 5px;
+}
+.dptc_both {
+height:50px;
+width:50px;
+background-color:#FF00FF;
+border-color:#000000;
+float: left;
+border-style: solid;
+border-width: 5px;
+}
+/*
+.dptc_none {
+height:50px;
+width:50px;
+background-color:#999999;
+border-color:#006600;
+float: left;
+border-style: solid;
+border-width: 5px;
+}
+.dptc_top {
+height:50px;
+width:50px;
+background-color:#FF0000;
+border-color:#006600;
+float: left;
+border-style: solid;
+border-width: 5px;
+}
+.dptc_bottom {
+height:50px;
+width:50px;
+background-color:#0000FF;
+border-color:#006600;
+float: left;
+border-style: solid;
+border-width: 5px;
+}
+.dptc_both {
+height:50px;
+width:50px;
+background-color:#FF00FF;
+border-color:#006600;
+float: left;
+border-style: solid;
+border-width: 5px;
+}
+*/
+</style>
+<script language="Javascript">
+var dpt = new Array();
+var frame=0;
+var dptRows=5;
+var dptCols=5;
+//enter this string to edit the font. export in font format and past here...
+//[ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ] 
+//REMOVE THE [], BUT KEEP THE FIRST SPACE!
+
+var font=new Array(0,0,0,0,0,
+0,23,0,23,0,
+0,3,0,3,0,
+10,31,10,31,10,
+16,14,21,14,1,
+18,8,4,2,17,
+12,21,18,19,12,
+0,0,3,0,0,
+0,31,17,17,0,
+0,17,17,31,0,
+21,14,31,14,21,
+4,4,31,4,4,
+0,4,2,1,0,
+4,4,4,4,4,
+0,0,24,24,0,
+16,8,4,2,1,
+0,31,17,31,0,
+0,18,31,16,0,
+0,29,21,23,0,
+0,21,21,31,0,
+0,7,4,31,0,
+0,23,21,29,0,
+0,31,21,29,0,
+0,1,1,31,0,
+0,31,21,31,0,
+0,7,5,31,0,
+0,0,27,0,0,
+0,16,11,0,0,
+0,4,10,17,0,
+0,10,10,10,0,
+0,17,10,4,0,
+0,1,29,7,0,
+0,14,10,14,24,
+24,14,9,14,24,
+31,21,21,21,31,
+31,17,17,17,17,
+31,17,17,10,4,
+31,21,21,21,21,
+31,5,5,5,1,
+31,17,21,21,29,
+31,4,4,4,31,
+17,17,31,17,17,
+31,16,16,16,24,
+31,4,4,10,17,
+31,16,16,16,16,
+31,2,4,2,31,
+31,6,4,12,31,
+31,17,17,17,31,
+31,5,5,5,7,
+31,17,17,31,16,
+31,5,13,29,23,
+23,21,21,21,29,
+1,1,31,1,1,
+31,16,16,16,31,
+7,12,24,12,7,
+31,16,28,16,31,
+17,10,4,10,17,
+1,7,28,7,1,
+25,29,21,23,19);
+
+function buildTable(){
+	var a='';
+	var i=0;
+	var j=0;
+	dpt[frame]=new Array();
+	for(i=0; i<dptRows; i++)
+	{
+		a=a+'<div id="dptr'+i+'" class="dptr">';
+		dpt[frame][i] = new Array();
+		for(j=0;j<dptCols;j++)
+		{
+			a=a+'<div id="dptr'+i+'c'+j+'" class="dptc_none" onclick="toggle(this,'+i+','+j+')" onmouseout="this.style.borderColor=\'\'" onmouseover="this.style.borderColor=\'#FFFFFF\'"></div>';
+			dpt[frame][i][j]=0;
+		}
+		a=a+'</div>';
+	}
+	var obj;
+	obj=document.getElementById("dpt");
+	obj.innerHTML=a;
+	refStat();
+}
+
+//frame to draw, true/false - is this a new frame? then perform array init...
+function draw(f,nFrame){
+	var me;
+	var i=0;
+	var j=0;
+
+	if(nFrame){dpt[f]=new Array();}
+		
+	for(i=0; i<dptRows; i++)
+	{
+		if(nFrame){dpt[f][i] = new Array();}
+		for(j=0;j<dptCols;j++)
+		{
+			if(nFrame){dpt[f][i][j]=0;}
+			me=document.getElementById('dptr'+i+'c'+j);
+			colorSet(f,i,j,me);
+		}
+	}
+}
+
+function toggle(me,r,c){
+	if(dpt[frame][r][c]==0){
+		dpt[frame][r][c]=1;
+	}else{
+		dpt[frame][r][c]=0;
+	}
+	colorSet(frame,r,c,me);
+}
+
+function colorSet(f,i,j,me){
+	//check for overlay of last frame....
+	if((f>0)&&(document.getElementById('overlay').checked)){
+		if(dpt[f][i][j]==0){
+			if(dpt[f-1][i][j]==0){me.className='dptc_none';}else{me.className='dptc_bottom';}
+		}else{
+			if(dpt[f-1][i][j]==0){me.className='dptc_top';}else{me.className='dptc_both';}
+		}
+	}else{//for first frame, and layover disabled
+		//nothing selected
+		if(dpt[f][i][j]==0){me.className='dptc_none';}//black
+		//only top layer
+		if(dpt[f][i][j]==1){me.className='dptc_top';}//red
+	}
+}
+
+function addText(){
+	var tf;
+	var i;
+	var tArr=new Array();
+	
+	obj=document.getElementById("textFrames");
+	tf=obj.value.toUpperCase();
+	tf=tf.replace(/NIGGER/,"");
+	tArr=tf.split("");
+	tArr=tArr.reverse();
+	for(i=0;i<tArr.length;i++){
+		//decode the font to usable values
+		//insert this into the array
+		dpt.splice(frame,0,SEQtoFrame(mapToFont(tArr[i])));
+	}
+	draw(frame,false);
+	refStat();
+	alert("Added "+tArr.length+" text frames.");
+	obj.value='';
+}
+
+//this function loads the current fontset into the array for editing
+function ldFont(){
+	var tf;
+	var i;
+	var tArr=new Array();
+	
+	if (confirm("Current frames will be erased!")) { 
+		dpt=new Array;
+		frame=0;
+		buildTable(); //clear the old stuff out
+		tf=' !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		tArr=tf.split("");
+		tArr=tArr.reverse();
+		for(i=0;i<tArr.length;i++){
+			//decode the font to usable values
+			//insert this into the array
+			dpt.splice(frame,0,SEQtoFrame(mapToFont(tArr[i])));
+		}
+		dpt.pop();//get rid of the last blank frame
+		draw(frame,false);
+		refStat();
+		alert("Fontset loaded for editing.");
+	}
+}
+
+//update the fontset lookup table with the current values
+function upFont(){
+	var tf;
+	var i;
+	var tArr=new Array();
+	
+	if(dpt.length!=59){alert("Need exactly 59 frames");return;}
+	var a=document.getElementById('codeOutput');
+	//the writeseq() should be updated to return a value rather than write to a .value, but whatever
+	//use codeoutput as a temp holder for the CSV output, them we parse that back into code.
+	//yeah, I'm that lazy today.
+	a.value='';
+	writeSeq(a,',',',');
+	tf=a.value;
+	a.value='';
+	tArr=tf.split(",");
+	font=tArr;
+	if (confirm("Fontset replaced. Clear the current sequence?")){ 
+		dpt=new Array;
+		frame=0;
+		buildTable(); //clear the old stuff out
+	}
+
+}
+
+
+function addSeq(){
+	var a=document.getElementById('codeInput');
+	var i;
+	var sArr=new Array();
+	var tArr=new Array();
+	
+	sArr=a.value.split('\n');
+	sArr=sArr.reverse();
+	for(i=0;i<sArr.length;i++){
+		tArr=sArr[i].split(" ");
+		//decode to frame format
+		//insert this into the array
+		dpt.splice(frame,0,SEQtoFrame(tArr));
+	}
+	
+	draw(frame,false);
+	refStat();
+	alert("Imported "+sArr.length+" frames.");
+
+}
+
+function SEQtoFrame(seq){
+	var i=0;
+	var j=0;
+	var arr=new Array();
+	var bin=new Array();
+	//the 'spec' is each byte is a column, top bit is bit 0....
+	//this is the opposite of the way I arranged the array.
+	//It would be the "top left hand corner" of a larger bitmap.
+	for(i=0; i<dptCols; i++){arr[i]=new Array();}//init every array
+	for(i=0; i<dptCols; i++)
+	{
+		bin=dToB(seq[i]).split("");
+		for(j=0; j<dptRows; j++){
+			if(bin[j]){ //check or the bin will have fewer than five chars and the upper vals will be undefined....
+				arr[j][i]=bin[j];
+			}else{
+				arr[j][i]=0;
+			}
+		}
+	}
+	return arr;
+}
+
+function dToB(n){
+	//from: http://www.javascriptkit.com/script/script2/binconvert.shtml
+	//credit: http://www.deja.com/~cyberdevelopers
+	var dec=new Number(); 
+	dec=n; 
+	i=dec;
+	var hit="";
+	 
+	while(i >= 1){
+	   var m=(i*10)/4;
+	   while(m > 1){m=m-5;};
+	   if(m < 0){i=(i-1)/2;hit+="1";}else{i=i/2;hit+="0";}
+	}
+	return hit;
+}
+
+function mapToFont(r){
+	var a=r.charCodeAt(0);
+	if((a<32)||(a>90)){ //we only have a font for space to Z, ASCII 32-90
+		f=new Array(31,31,31,31,31);
+		alert("No font for character '"+r+"'");
+		return f;
+	}
+	a-=32;//adjust to 0, A=65
+	a*=5
+	if( (a<(font.length-5)) || (a>0) ){//make sure its something we can use...
+		f=new Array(font[a],font[a+1],font[a+2],font[a+3],font[a+4]);
+	}else{
+		f=new Array(31,31,31,31,31);
+		alert("No font for character '"+r+"'");
+	}
+	return f;
+}
+
+function refStat(){
+	document.getElementById('statusdisplay').innerHTML='Frame '+(frame+1)+' of '+dpt.length;
+}
+function first(){
+	frame=0;
+	draw(frame,false);
+	refStat();
+}
+function rw(){
+	if(frame==0){
+		//add new frame to beginning?
+		//drawNew((dpt.push(1)-1));
+	}else{
+		frame--;
+		draw(frame,false);
+	}
+	//alert(dpt.length);
+	refStat();
+}
+function ff(){
+	//at the last frame, add a new frame
+	if((dpt.length-1)==frame){
+		//add new frame
+		frame++;
+		draw((dpt.push(1)-1),true);
+	}else{
+		//redraw an existing frame
+		frame++;
+		draw(frame,false);
+	}
+	refStat();
+}
+function last(){
+	frame=dpt.length-1;
+	draw(frame,false);
+	refStat();
+}
+function rmFrame(){
+	if(dpt.length==1){
+		buildTable();
+	}else{
+		dpt.splice(frame,1);
+		if(frame>(dpt.length-1)){frame--;}
+		draw(frame,false);
+		refStat();
+	}
+}
+
+function insFrame(){
+	dpt.splice(frame,0,'');
+	draw(frame,true);
+	refStat();
+}
+
+function writeSeqArduino(me,spacer,delimiter){
+	var i;
+	me.value="#define FRAMECNT " + dpt.length + delimiter;
+	me.value += "Frame Frames[FRAMECNT] = {" + delimiter;
+	for(i=0;i<dpt.length;i++){
+	  me.value+=frameToBinSeq(dpt[i],spacer,delimiter);
+	  if (i < dpt.length-1) {
+	    me.value += ','+delimiter;
+	  }
+	  me.value+=delimiter;
+	}
+	me.value += "};"+delimiter;
+}
+
+
+
+function writeSeq(me,spacer,delimiter){
+	var i;
+	me.value='';
+	for(i=0;i<dpt.length;i++){
+		me.value+=frameToSeq(dpt[i],spacer,delimiter);
+	}
+}
+
+function sendSeq(){
+	if(dpt.length<2){alert("Please submit at least two frames."); return false;}
+	if (confirm("About to submit your sequence. Press OK to submit.")) { 
+		var a=document.getElementById('seq');
+		writeSeq(a,' ','\r\n');
+	}else{
+		return false;
+	}
+}
+
+function genSeq(){
+	//add options for font output?
+	var a=document.getElementById('codeOutput');
+	if(document.getElementById('font').checked){//native format
+//			alert('Writing in font variable formatted output. Uncheck the font box for normal output.');
+			writeSeq(a,' ','\r\n');
+	}else{ // arduino format
+			writeSeqArduino(a,' ','\r\n');
+	}
+
+}
+
+function frameToBinSeq(obj,spacer,delimiter){
+  var i=0;
+  var j=0;
+  var res='{';
+
+  for(i=0; i<dptRows; i++)
+    {
+      if (i) res += ' ';
+      res += 'B';
+      for(j=0; j<dptCols; j++){
+	if(obj[i][j]==1) {
+	  res += '1';
+	}
+	else {
+	  res += '0';
+	}
+      }
+      if(i<(dptRows-1)){
+	res+=','+delimiter;
+      }else{
+	// do nothing
+      }
+    }
+  res += '}';
+  return res;
+}
+
+
+
+function frameToSeq(obj,spacer,delimiter){
+	var i=0;
+	var j=0;
+	var colByte=0;
+	var res='';
+	var binVal;//binary value...
+
+	//the 'spec' is each byte is a column, top bit is bit 0....
+	//this is the opposite of the way I arranged the array.
+	//It would be the "top left hand corner" of a larger bitmap.
+	//1 = 0b00001
+	//2 = 0b00010
+	//4 = 0b00100
+	//8 = 0b01000
+	//16 = 0b10000
+	for(i=0; i<dptCols; i++)
+	{
+		binVal=1;
+		for(j=0; j<dptRows; j++){
+			if(obj[j][i]==1){colByte+=binVal;}
+			binVal*=2;
+		}
+		if(i<(dptCols-1)){
+			res+=colByte+spacer;
+		}else{
+			res+=colByte+delimiter;			
+		}
+		colByte=0;
+	}
+	//res+="/r/n";
+	return res;
+}
+var timer;
+var timerActive=false;
+
+function play(){
+	//toggle timer
+	//toggle play/pause button
+	if(timerActive){
+		clearTimeout(timer);
+		document.getElementById('pp').value="Play";
+		timerActive=false;
+	}else{
+		animate();
+		document.getElementById('pp').value="Pause";
+		timerActive=true;
+	}
+
+}
+
+
+function animate(){
+	if((dpt.length-1)==frame){frame=-1;}
+	ff();		
+	timer=setTimeout ( "animate()", (document.getElementById('speed').value) );
+}
+var clipboard=new Array();
+function cp(){
+	var i=0;
+	var j=0;
+	clipboard=new Array();
+	for(i=0; i<dptRows; i++)
+	{
+		clipboard[i] = new Array();
+		for(j=0;j<dptCols;j++)
+		{
+			clipboard[i][j]=dpt[frame][i][j];
+		}
+	}
+}
+
+function pt(){
+	//if(!(document.getElementById('pastebug').checked)){
+		if(!confirm('This will overwrite the current frame. Continue?'))return;
+	//}
+		var i=0;
+		var j=0;
+
+		for(i=0; i<dptRows; i++)
+		{
+			for(j=0;j<dptCols;j++)
+			{
+				dpt[frame][i][j]=clipboard[i][j];
+			}
+		}
+		draw(frame,false);
+}
+
+</script>
+</head>
+<body onload="buildTable()">
+<table border="0" cellpadding="5" cellspacing="5">
+  <tbody><tr>
+    <td width="400" valign="top">
+<div id="dpt"><div id="dptr0" class="dptr"><div id="dptr0c0" class="dptc_none" onclick="toggle(this,0,0)" onmouseout="this.style.borderColor=&#39;&#39;" onmouseover="this.style.borderColor=&#39;#FFFFFF&#39;"></div><div id="dptr0c1" class="dptc_none" onclick="toggle(this,0,1)" onmouseout="this.style.borderColor=&#39;&#39;" onmouseover="this.style.borderColor=&#39;#FFFFFF&#39;"></div><div id="dptr0c2" class="dptc_none" onclick="toggle(this,0,2)" onmouseout="this.style.borderColor=&#39;&#39;" onmouseover="this.style.borderColor=&#39;#FFFFFF&#39;"></div><div id="dptr0c3" class="dptc_none" onclick="toggle(this,0,3)" onmouseout="this.style.borderColor=&#39;&#39;" onmouseover="this.style.borderColor=&#39;#FFFFFF&#39;" style=""></div><div id="dptr0c4" class="dptc_none" onclick="toggle(this,0,4)" onmouseout="this.style.borderColor=&#39;&#39;" onmouseover="this.style.borderColor=&#39;#FFFFFF&#39;" style=""></div></div><div id="dptr1" class="dptr"><div id="dptr1c0" class="dptc_none" onclick="toggle(this,1,0)" onmouseout="this.style.borderColor=&#39;&#39;" onmouseover="this.style.borderColor=&#39;#FFFFFF&#39;"></div><div id="dptr1c1" class="dptc_none" onclick="toggle(this,1,1)" onmouseout="this.style.borderColor=&#39;&#39;" onmouseover="this.style.borderColor=&#39;#FFFFFF&#39;"></div><div id="dptr1c2" class="dptc_none" onclick="toggle(this,1,2)" onmouseout="this.style.borderColor=&#39;&#39;" onmouseover="this.style.borderColor=&#39;#FFFFFF&#39;"></div><div id="dptr1c3" class="dptc_none" onclick="toggle(this,1,3)" onmouseout="this.style.borderColor=&#39;&#39;" onmouseover="this.style.borderColor=&#39;#FFFFFF&#39;"></div><div id="dptr1c4" class="dptc_none" onclick="toggle(this,1,4)" onmouseout="this.style.borderColor=&#39;&#39;" onmouseover="this.style.borderColor=&#39;#FFFFFF&#39;" style=""></div></div><div id="dptr2" class="dptr"><div id="dptr2c0" class="dptc_none" onclick="toggle(this,2,0)" onmouseout="this.style.borderColor=&#39;&#39;" onmouseover="this.style.borderColor=&#39;#FFFFFF&#39;"></div><div id="dptr2c1" class="dptc_none" onclick="toggle(this,2,1)" onmouseout="this.style.borderColor=&#39;&#39;" onmouseover="this.style.borderColor=&#39;#FFFFFF&#39;"></div><div id="dptr2c2" class="dptc_none" onclick="toggle(this,2,2)" onmouseout="this.style.borderColor=&#39;&#39;" onmouseover="this.style.borderColor=&#39;#FFFFFF&#39;"></div><div id="dptr2c3" class="dptc_none" onclick="toggle(this,2,3)" onmouseout="this.style.borderColor=&#39;&#39;" onmouseover="this.style.borderColor=&#39;#FFFFFF&#39;"></div><div id="dptr2c4" class="dptc_none" onclick="toggle(this,2,4)" onmouseout="this.style.borderColor=&#39;&#39;" onmouseover="this.style.borderColor=&#39;#FFFFFF&#39;" style=""></div></div><div id="dptr3" class="dptr"><div id="dptr3c0" class="dptc_none" onclick="toggle(this,3,0)" onmouseout="this.style.borderColor=&#39;&#39;" onmouseover="this.style.borderColor=&#39;#FFFFFF&#39;"></div><div id="dptr3c1" class="dptc_none" onclick="toggle(this,3,1)" onmouseout="this.style.borderColor=&#39;&#39;" onmouseover="this.style.borderColor=&#39;#FFFFFF&#39;"></div><div id="dptr3c2" class="dptc_none" onclick="toggle(this,3,2)" onmouseout="this.style.borderColor=&#39;&#39;" onmouseover="this.style.borderColor=&#39;#FFFFFF&#39;"></div><div id="dptr3c3" class="dptc_none" onclick="toggle(this,3,3)" onmouseout="this.style.borderColor=&#39;&#39;" onmouseover="this.style.borderColor=&#39;#FFFFFF&#39;"></div><div id="dptr3c4" class="dptc_none" onclick="toggle(this,3,4)" onmouseout="this.style.borderColor=&#39;&#39;" onmouseover="this.style.borderColor=&#39;#FFFFFF&#39;"></div></div><div id="dptr4" class="dptr"><div id="dptr4c0" class="dptc_none" onclick="toggle(this,4,0)" onmouseout="this.style.borderColor=&#39;&#39;" onmouseover="this.style.borderColor=&#39;#FFFFFF&#39;"></div><div id="dptr4c1" class="dptc_none" onclick="toggle(this,4,1)" onmouseout="this.style.borderColor=&#39;&#39;" onmouseover="this.style.borderColor=&#39;#FFFFFF&#39;"></div><div id="dptr4c2" class="dptc_none" onclick="toggle(this,4,2)" onmouseout="this.style.borderColor=&#39;&#39;" onmouseover="this.style.borderColor=&#39;#FFFFFF&#39;"></div><div id="dptr4c3" class="dptc_none" onclick="toggle(this,4,3)" onmouseout="this.style.borderColor=&#39;&#39;" onmouseover="this.style.borderColor=&#39;#FFFFFF&#39;"></div><div id="dptr4c4" class="dptc_none" onclick="toggle(this,4,4)" onmouseout="this.style.borderColor=&#39;&#39;" onmouseover="this.style.borderColor=&#39;#FFFFFF&#39;"></div></div></div>
+<input type="button" value="&lt;&lt;" onclick="first()">
+<input type="button" value="&lt;" onclick="rw()">
+<span id="statusdisplay">Frame 1 of 1</span>
+<input type="button" value="&gt;" onclick="ff()">
+<input type="button" value="&gt;&gt;" onclick="last()">
+<br>
+<input type="button" id="pp" onclick="play()" value="Play">
+Speed:
+<select name="speed" id="speed">
+  <option value="1000">1s</option>
+  <option value="750">.75s</option>
+  <option value="500">.5s</option>
+  <option value="250" selected="selected">.25s</option>
+  <option value="100">.1s</option>
+</select>
+<br>
+<input type="button" value="Insert new frame before current" onclick="insFrame()"> 
+<input type="button" value="Delete this frame" onclick="rmFrame()">
+<br>
+<input type="button" onclick="cp()" value="Copy">
+<input type="button" onclick="pt()" value="Paste"> 
+<!--Warning off 
+<input name="pastebug" type="checkbox" id="pastebug"/> -->
+<br>
+Overlay previous frame 
+<input name="overlay" type="checkbox" id="overlay" onclick="draw(frame,false)">
+<br>
+<br>
+<strong>Backup and Restore Tools</strong><br>
+<table border="1" cellpadding="0" bordercolor="#000000">
+  <tbody><tr>
+    <td align="center" valign="top">Generate code to save for later:<br>
+<textarea name="codeOutput" cols="20" rows="5" id="codeOutput"></textarea>
+<br>
+<input type="button" value="Generate" onclick="genSeq()">
+<input type="checkbox" name="font" id="font" onclick="if(this.checked){/*alert(&#39;Font mode is only for exporting font formatted variable strings. Font should range from ASCII chars 32 to 90&#39;);*/}">native fmt
+</td>
+    <td align="center" valign="top">Restore from sequence code:<br>
+<textarea name="codeInput" cols="20" rows="5" id="codeInput"></textarea>
+<br>
+<input type="button" value="Add before current frame" onclick="addSeq()"></td>
+  </tr>
+</tbody></table>
+<br>
+</td>
+    <td width="400" valign="top">
+    <strong>About the Daft Punk Animation Builder</strong><br>
+    This tool builds animation sequences for a Daft Punk display.<br>
+    <br>
+    <strong>Click the grid</strong> to toggle the lights on/off.<br> 
+    <strong>&lt; and &gt;</strong> to navigate through frames. <br>
+    <strong>Press &gt; at the last frame</strong> to add a new frame.<br>
+     <strong>&lt;&lt; and &gt;&gt;</strong> skip to beginning/end of  sequence.<br>
+     <strong>Insert and Delete</strong> add/remove frames.<br>
+     <strong>Play</strong> animates the sequence in a loop.<br>
+     Check <strong>Overlay</strong> to show the previous frame in blue. Helpful for animation.<br>
+     <br>
+     <strong>To save an animation sequence to play on the Daft Punk Display</strong> click <strong><em>Generate</em></strong>, then copy the contents of the text box, and replace the contents of <strong>frames.h</strong> with it.
+<br>
+If you want to save a sequence for later editing instead, check <em>native fmt</em> and save it to a text file.  You can resume editing it later via <strong>Restore frames</strong><br>
+     <br>
+     <strong>Restore frames</strong> from an existing sequence. <br>
+     Paste the sequence code in the box and click Add.<br><br>
+     -------------------------------------------------<br>
+     <br>This script was hacked from Ian's Project:  Build your own internet graffiti wall <br>
+<a href="http://hackaday.com/2008/10/02/how-to-networked-graffiti-wall/">http://www.hackaday.com</a><br>
+<br><strong>Thanks, Ian!</strong><br>
+    </td>
+  </tr>
+</tbody></table>
+
+</body></html>

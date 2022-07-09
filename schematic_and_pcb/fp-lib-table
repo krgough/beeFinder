@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name bee-badge-libraries)(type KiCad)(uri ${KIPRJMOD}/bee-badge-libraries.pretty)(options "")(descr ""))
+)

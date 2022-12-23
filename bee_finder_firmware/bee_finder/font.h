@@ -58,6 +58,7 @@ const uint8_t W[] PROGMEM = {B10001,B10001,B10101,B10101,B01010};
 const uint8_t X[] PROGMEM = {B100010,B010100,B001000,B010100,B100010};
 const uint8_t Y[] PROGMEM = {B100010,B010100,B001000,B001000,B001000};
 const uint8_t Z[] PROGMEM = {B11110,B00100,B01000,B10000,B11110};
+const uint8_t SPACE[] PROGMEM = {B00000,B00000,B00000,B00000,B00000};
 
 // 5x5 Numbers
 const uint8_t n1[] PROGMEM = {B00100,B01100,B10100,B00100,B11111};
@@ -71,6 +72,6 @@ const uint8_t n8[] PROGMEM = {B01110,B10001,B01110,B10001,B01110};
 const uint8_t n9[] PROGMEM = {B00111,B01001,B00111,B00001,B00001};
 const uint8_t n0[] PROGMEM = {B01110,B11001,B10101,B10011,B01110};
 
-const uint8_t* const letters[] PROGMEM = {A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z};
-const uint8_t letter_len[] PROGMEM     = {5,5,5,5,5,5,5,5,4,5,5,5,6,5,5,5,6,5,5,6,5,6,6,6,6,5};
+const uint8_t* const letters[] PROGMEM = {A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,SPACE};
+const uint8_t letter_len[] PROGMEM     = {5,5,5,5,5,5,5,5,4,5,5,5,6,5,5,5,6,5,5,6,5,6,6,6,6,5,5};
 const uint8_t* const numbers[] PROGMEM = {n1,n2,n3,n4,n5,n6,n7,n8,n9,n0};

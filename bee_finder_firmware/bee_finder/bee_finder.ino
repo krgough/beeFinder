@@ -79,8 +79,8 @@ const byte NODEID     = KEITH_UID;  //change to one of the above UIDs to persona
 
 // Name string to be displayed and it's length. Rememeber to add a space on the end to get
 // it to scroll off the screen nicely.
-const int STR_LEN = 6;
-const char MY_STRING[] = "KEITH ";
+const int STR_LEN = 16;
+const char MY_STRING[] = "MERRY CHRISTMAS ";
 // **********************************************************************************************
 
 // **********************************************************************************************
@@ -92,6 +92,7 @@ int COL_COUNT = 0;
 int COL_IDX = 0;
 unsigned long LAST_COL_INC = 0;
 byte CURRENT_FRAME[5];
+#define SCROLL_RATE 100 // Milliseconds between column scrolls
 
 
 // *************************
@@ -207,11 +208,19 @@ int get_char_start(int str_idx){
   return c_start;
 }
 
+int get_char_lookup_index(int my_char){
+    // Subtract 65 (ascii for A) to get index in lookup
+    //   or 
+    // if it is a space then return the index for that special case
+    if (my_char == ' '){
+        return 26;
+    }
+    return (int)my_char - 65;
+}
+
 int get_char_length(int my_char){
-  if (my_char == ' '){
-    return 5;
-  }
-  return  pgm_read_byte(letter_len + my_char - 65);
+  // Get character length from lookup table
+  return pgm_read_byte(letter_len + get_char_lookup_index(my_char));
 }
 
 byte get_row(int my_char, int row){
@@ -219,10 +228,7 @@ byte get_row(int my_char, int row){
   // Get the row data for the given row
   // We must use pgm_read_byte to read a byte from an address in program memory
   // The data is stored as an array of arrays so we have to use this macro twice
-  if (my_char == ' '){
-    return B00000000;
-  }
-  return pgm_read_byte( pgm_read_byte(&(letters[(int)my_char - 65])) + row );
+  return pgm_read_byte( pgm_read_byte(&(letters[get_char_lookup_index(my_char)])) + row );
 }
 
 void update_rssi_pixels(){
@@ -331,7 +337,7 @@ void loop() {
 
   // We are in Name display mode
   else {
-    if ((millis() - LAST_COL_INC) > 200) {
+    if ((millis() - LAST_COL_INC) > SCROLL_RATE) {
       LAST_COL_INC = millis();
       incrementColumn();
       buildFrame();

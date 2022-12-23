@@ -16,3 +16,32 @@ Create a config.h file with the radio encryption key.  This must be exactly 16 c
 ```
 #define ENCRYPTKEY    "sampleEncryptKey"
 ```
+
+# vs-code
+Install the arduino extension
+Install arduino-cli
+```
+brew install arduino-cli
+```
+*** IMPORTANT: Restart vs-code
+
+Use ```which arduino-cli``` to find the location of your executable
+Set these vs-code settings...
+arduino.path = <folder from 'which arduino-cli'>
+arduino.command_path = arduino-cli
+
+Set the script name in ardiono.json  
+
+Typical arduino.json:
+```
+{
+    "port": "/dev/tty.usbserial-AQ034BWC",
+    "configuration": "cpu=16MHzatmega328",
+    "board": "arduino:avr:pro",
+    "sketch": "bee_finder_firmware/bee_finder/bee_finder.ino"
+}
+```
+
+# Programming
+- Connect GND, Tx, Rx
+- Connect RTS from FTDI cable to DTR on the beekeeper device to allow it to set programming mode

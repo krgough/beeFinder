@@ -92,7 +92,7 @@ int COL_COUNT = 0;
 int COL_IDX = 0;
 unsigned long LAST_COL_INC = 0;
 byte CURRENT_FRAME[5];
-#define SCROLL_RATE 100 // Milliseconds between column scrolls
+#define SCROLL_RATE 200 // Milliseconds between column scrolls
 
 
 // *************************

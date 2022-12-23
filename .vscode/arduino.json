@@ -1,0 +1,6 @@
+{
+    "configuration": "cpu=8MHzatmega328",
+    "board": "arduino:avr:pro",
+    "port": "/dev/tty.usbserial-AQ034BWC",
+    "sketch": "bee_finder_firmware/bee_finder/bee_finder.ino"
+}
